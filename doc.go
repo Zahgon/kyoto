@@ -50,19 +50,12 @@ Markup is also not included here (it's just a well-known `html/template`).
 		return state
 	}
 
-For details, please check project's website on https://kyoto.codes.
-Also, you may check the library index to explore available sub-packages
+For details, please check the library index to explore available sub-packages
 and https://pkg.go.dev for Go'ish documentation style.
 
 # Quick start
 
-We don't want you to deal with boilerplate code on your own,
-so you can proceed with our simple starter project.
-
-	git clone https://github.com/kyoto-framework/new <your-new-project>
-	rm -r <your-new-project>/.git
-
-Feel free to use it as an example for your own setup.
+Not implemented yet.
 
 # Components
 
