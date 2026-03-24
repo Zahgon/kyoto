@@ -2,6 +2,7 @@ package component
 
 import (
 	"net/http"
+	"sync"
 )
 
 // Context is the context of the current request.
@@ -31,14 +32,21 @@ type Store interface {
 }
 
 type MapStore struct {
+	mu    sync.RWMutex
 	store map[string]any
 }
 
 func (s *MapStore) Get(key string) any {
+	s.mu.RLock()
+	defer s.mu.RUnlock()
+
 	return s.store[key]
 }
 
 func (s *MapStore) Set(key string, value any) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
 	s.store[key] = value
 }
 

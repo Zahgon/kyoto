@@ -14,6 +14,4 @@ func (*Disposable) Marshal(src any) string {
 }
 
 // Unmarshal for disposable returns nothing.
-func (*Disposable) Unmarshal(dst any, str string) {
-	return
-}
+func (*Disposable) Unmarshal(dst any, str string) {}

@@ -157,7 +157,7 @@ It includes request and response objects, as well as some other useful stuff lik
 	func Component(ctx *component.Context) component.State {
 		...
 		ctx.Request // http.Request
-		ctx.Response // http.ResponseWriter
+			ctx.ResponseWriter // http.ResponseWriter
 		ctx.Set("k", "v") // Store arbitrary data in the context
 		v := ctx.Get("k").(string) // Get arbitrary data from the context
 		...
@@ -320,7 +320,7 @@ Let's check how it works on the server side.
 	package main
 
 	type ComponentState struct {
-		component.Universal // We're using server state here
+			component.Universal // We're using universal state here
 		rendering.Template  // We're using template rendering for this component, just like in pages
 
 		Cursor string
@@ -332,7 +332,7 @@ Let's check how it works on the server side.
 		// Unmarshal state on post request
 		if ctx.Request.Method == http.MethodPost {
 			ctx.Request.ParseForm()
-			state.Unmarshal(ctx.Request.FormValue("hx-state"))
+				state.Unmarshal(state, ctx.Request.FormValue("hx-state"))
 		}
 		// Initialize cursor if it's empty
 		if state.Cursor == "" {
