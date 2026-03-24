@@ -35,15 +35,29 @@ func (s *Server) timeout() time.Duration {
 
 // cleanup removes outdated state files.
 func (s *Server) cleanup() {
-	for _, file := range errorsx.Must(os.ReadDir(s.path())) {
+	files, err := os.ReadDir(s.path())
+	if err != nil {
+		// Path may be removed while async cleanup is still running.
+		return
+	}
+
+	for _, file := range files {
 		// Pass if file is not a component state
 		if !strings.HasSuffix(file.Name(), ".component") {
 			continue
 		}
+
+		info, err := file.Info()
+		if err != nil {
+			// File may disappear between ReadDir and Info.
+			continue
+		}
+
 		// If creation/modification date is out of timeout bounds,
 		// remove that file.
-		if time.Since(errorsx.Must(file.Info()).ModTime()) > s.timeout() {
-			errorsx.Must(0, os.Remove(path.Join(s.path(), file.Name())))
+		if time.Since(info.ModTime()) > s.timeout() {
+			// Ignore remove errors to keep cleanup best-effort and panic-free.
+			_ = os.Remove(path.Join(s.path(), file.Name()))
 		}
 	}
 }
