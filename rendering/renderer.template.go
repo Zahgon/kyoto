@@ -29,40 +29,26 @@ type Template struct {
 	FuncMap template.FuncMap `json:"-"` // render.FuncMap by default
 }
 
-func (t *Template) RenderSkip() bool {
-	return t.Skip
-}
+func (t *Template) RenderSkip() bool { _ = "STUB: not implemented"; return false }
 
 func (t *Template) Render(state component.State, w io.Writer) error {
+	_ = "STUB: not implemented"
 	// Defaults
-	if t.Name == "" {
-		t.Name = state.GetName()
-	}
-	if t.Glob == "" {
-		t.Glob = TEMPLATE_GLOB
-	}
-	if t.FuncMap == nil {
-		t.FuncMap = TEMPLATE_FUNCMAP
-	}
-	// Define template
-	tmpl := t.Raw
-	if tmpl == nil {
-		// Base
-		tmpl = template.New(t.Name)
-		// Functions
-		tmpl = tmpl.Funcs(t.FuncMap)
-		// Parse
-		if t.EmbedFS != nil {
-			// Parse embedded
-			tmpl = template.Must(tmpl.ParseFS(t.EmbedFS, t.Glob))
-		} else if TEMPLATE_EMBEDFS != nil {
-			// Parse embedded
-			tmpl = template.Must(tmpl.ParseFS(TEMPLATE_EMBEDFS, t.Glob))
-		} else {
-			// Parse from disk
-			tmpl = template.Must(tmpl.ParseGlob(t.Glob))
-		}
-	}
-	// Render
-	return tmpl.Execute(w, state)
+	return nil
 }
+
+// Define template
+
+// Base
+
+// Functions
+
+// Parse
+
+// Parse embedded
+
+// Parse embedded
+
+// Parse from disk
+
+// Render

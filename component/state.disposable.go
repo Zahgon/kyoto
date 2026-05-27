@@ -9,9 +9,7 @@ type Disposable struct {
 
 // Marshal for disposable returns "disposable" string.
 // This flag will help to detect wrong action usage.
-func (*Disposable) Marshal(src any) string {
-	return "disposable"
-}
+func (*Disposable) Marshal(src any) string { _ = "STUB: not implemented"; return "" }
 
 // Unmarshal for disposable returns nothing.
-func (*Disposable) Unmarshal(dst any, str string) {}
+func (*Disposable) Unmarshal(dst any, str string) { _ = "STUB: not implemented"; return }

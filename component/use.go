@@ -1,24 +1,17 @@
 package component
 
-import (
-	"github.com/yznts/zen/v3/async"
-	"github.com/yznts/zen/v3/errorsx"
-)
-
 // Use allows you to use your components in asynchronous way.
 // It's a basic and preferred way to use your components.
 func Use(ctx *Context, component Component) Future {
+	_ = "STUB: not implemented"
 	// Create state future.
-	ftr := async.New(func() (State, error) {
-		return component(ctx), nil
-	})
-	// Create and return getter.
-	return func() State {
-		// Await for state.
-		state := errorsx.Must(ftr.Await())
-		// Set component name.
-		state.SetName(component.GetName())
-		// Return state.
-		return state
-	}
+	return *new(Future)
 }
+
+// Create and return getter.
+
+// Await for state.
+
+// Set component name.
+
+// Return state.

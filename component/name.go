@@ -8,10 +8,10 @@ type Name struct {
 
 // SetName is a component name setter.
 func (c *Name) SetName(name string) {
-	c.Name = name
+	_ = "STUB: not implemented"
+
+	// GetName is a component name getter.
+	return
 }
 
-// GetName is a component name getter.
-func (c *Name) GetName() string {
-	return c.Name
-}
+func (c *Name) GetName() string { _ = "STUB: not implemented"; return "" }

@@ -18,11 +18,8 @@ type Context struct {
 // Initialize a new context, that will be passed through the components.
 // Uses MapStore as a store by default.
 func NewContext(w http.ResponseWriter, r *http.Request) *Context {
-	return &Context{
-		ResponseWriter: w,
-		Request:        r,
-		Store:          NewMapStore(),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 // Store allows you to store own data inside of the context.
@@ -36,22 +33,8 @@ type MapStore struct {
 	store map[string]any
 }
 
-func (s *MapStore) Get(key string) any {
-	s.mu.RLock()
-	defer s.mu.RUnlock()
+func (s *MapStore) Get(key string) any { _ = "STUB: not implemented"; return *new(any) }
 
-	return s.store[key]
-}
+func (s *MapStore) Set(key string, value any) { _ = "STUB: not implemented"; return }
 
-func (s *MapStore) Set(key string, value any) {
-	s.mu.Lock()
-	defer s.mu.Unlock()
-
-	s.store[key] = value
-}
-
-func NewMapStore() *MapStore {
-	return &MapStore{
-		store: make(map[string]any),
-	}
-}
+func NewMapStore() *MapStore { _ = "STUB: not implemented"; return nil }
